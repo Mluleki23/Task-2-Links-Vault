@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './header';
+
 import SearchBar from './SearchBar';
 
 export default function MainRec() {
