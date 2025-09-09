@@ -6,6 +6,7 @@ import Addlink from "./components/Addlink";
 import Input from "./components/Input";
 import "./App.css";
 import SearchBar from "./components/SearchBar";
+import Button from "./components/Button";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         <Input text="Title" /> <br />
         <Input text="Link" /> <br />
         <Input text="Description" /> <br />
+      </div>
+      <div className="button">
+        <Button name="Save" />
       </div>
     </>
   );
