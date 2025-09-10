@@ -2,12 +2,13 @@
 import React from 'react'
 interface myButton{
     name : string,
+    colours: string,
 }
 
-export default function Button({name}:myButton) {
+export default function Button({name, colours}:myButton) {
   return (
     <div>
-      <button style={{backgroundColor:'green', height:'40px', width:'70px'}}> {name}</button>
+      <button style={{backgroundColor: colours}} > {name}</button>
     </div>
   );
 }

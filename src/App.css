@@ -12,12 +12,12 @@ body,
 #root{
 
   border: 1px solid red;
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 100%;
   justify-self: center;
 }
 .header h1 {
-  text-align: center;
+  text-align: start;
   background-color: grey;
   width: 100%;
 
@@ -28,4 +28,22 @@ body,
   gap: 10px; 
   width: 300px; 
 
+}
+.cancelbutton {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5rem;
+  margin-top: -3rem;
+}
+button {
+  height: 40px;
+   width: 70px;
+}
+.searchbutton{
+  padding: 1rem;
+  margin-left: 15rem;
+  
+}
+.Nav{
+  background-color: blue;
 }

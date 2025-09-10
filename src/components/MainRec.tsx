@@ -7,8 +7,8 @@ export default function MainRec() {
     <div
       style={{
         border: "1px solid red",
-        height: "50%",
-        width: "50%",
+        height: "80%",
+        width: "80%",
         display: "flex",
         justifyContent: "center",
       }}
