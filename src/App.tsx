@@ -9,6 +9,7 @@ import "./App.css";
 import SearchBar from "./components/SearchBar";
 import Button from "./components/Button";
 import LinksTable from "./LinksTable";
+import Footer from "./components/Footer";
 
 
 
@@ -23,18 +24,19 @@ function App() {
         <SearchBar />
 
         <Addlink />
-        <div className="input">
+        {/* <div className="input">
           <Input text="Tag" /> <br />
           <Input text="Title" /> <br />
           <Input text="Link" /> <br />
           <Input text="Description" /> <br />
-        </div>
-        <div className="button">
+        </div> */}
+        {/* <div className="button">
           <Button name="Save" colours="green" />
           <Button name="Cancel" colours="red" />
-        </div>
+        </div> */}
         <LinksTable />
       </div>
+      <Footer/>
     </>
   );
 }

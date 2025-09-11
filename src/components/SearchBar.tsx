@@ -6,7 +6,7 @@ interface SearchBar {
 export default function SearchBar() {
   return (
     <div className="searchbutton">
-      <FaSearch /> <input type="text" id="search" placeholder="search" />
+      <FaSearch size="25px" /> <input type="text" id="search" placeholder="search" />
     </div>
   );
 }
