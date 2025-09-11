@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "./components/Input";
+import SearchBar from "./components/SearchBar";
 
 
 interface LinkItem {
@@ -19,12 +20,14 @@ export default function LinksTable() {
     description: "",
   });
   const [editId, setEditId] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const saveLink = () => {
+    if (!form.tag || !form.title || !form.url) return; // basic guard
     if (editId !== null) {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
@@ -52,9 +55,21 @@ export default function LinksTable() {
     setLinks((prev) => prev.filter((l) => l.id !== id));
   };
 
+  // filter by tag OR title OR description
+  const filteredLinks = links.filter((l) => {
+    const q = searchTerm.toLowerCase();
+    return (
+      l.title.toLowerCase().includes(q) ||
+      l.tag.toLowerCase().includes(q) ||
+      l.description.toLowerCase().includes(q)
+    );
+  });
+
   return (
     <div className="links-table-container">
       <h2>Links Vault</h2>
+
+      <SearchBar onSearch={setSearchTerm} />
 
       <div className="form-section">
         <Input text="Tag" value={form.tag} onChange={handleChange} />
@@ -70,45 +85,47 @@ export default function LinksTable() {
         </button>
       </div>
 
-      <table className="links-table">
-        <thead>
-          <tr>
-            <th>Tag</th>
-            <th>Title</th>
-            <th>Link</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {links.map((link) => (
-            <tr key={link.id}>
-              <td>{link.tag}</td>
-              <td>{link.title}</td>
-              <td>
-                <a href={link.url} target="_blank" rel="noreferrer">
-                  {link.url}
-                </a>
-              </td>
-              <td>{link.description}</td>
-              <td>
-                <button
-                  className="btn btn-green"
-                  onClick={() => editLink(link.id)}
-                >
-                  Update
-                </button>
-                <button
-                  className="btn btn-red"
-                  onClick={() => deleteLink(link.id)}
-                >
-                  Delete
-                </button>
-              </td>
+      {filteredLinks.length > 0 && (
+        <table className="links-table">
+          <thead>
+            <tr>
+              <th>Tag</th>
+              <th>Title</th>
+              <th>Link</th>
+              <th>Description</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredLinks.map((link) => (
+              <tr key={link.id}>
+                <td>{link.tag}</td>
+                <td>{link.title}</td>
+                <td>
+                  <a href={link.url} target="_blank" rel="noreferrer">
+                    {link.url}
+                  </a>
+                </td>
+                <td>{link.description}</td>
+                <td>
+                  <button
+                    className="btn btn-green"
+                    onClick={() => editLink(link.id)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="btn btn-red"
+                    onClick={() => deleteLink(link.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }

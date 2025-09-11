@@ -8,11 +8,10 @@ interface Props {
 
 export default function Input({ text, value, onChange }: Props) {
   return (
-    <div>
+    <div className="input-field">
+      <label>{text}</label>
       <input
-        type="text"
-        name={text.toLowerCase()}
-        placeholder={text}
+        name={text.toLowerCase()} // ✅ IMPORTANT
         value={value}
         onChange={onChange}
       />

@@ -21,7 +21,7 @@ function App() {
       </div>
 
       <div className="MySection">
-        <SearchBar />
+       
 
         <Addlink />
         {/* <div className="input">
@@ -30,10 +30,7 @@ function App() {
           <Input text="Link" /> <br />
           <Input text="Description" /> <br />
         </div> */}
-        {/* <div className="button">
-          <Button name="Save" colours="green" />
-          <Button name="Cancel" colours="red" />
-        </div> */}
+     
         <LinksTable />
       </div>
       <Footer/>
