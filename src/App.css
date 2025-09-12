@@ -24,17 +24,13 @@ body,
   align-items: center;
 }
 
-/* --------------------------
-   Header
---------------------------- */
-.header h1 {
+.header{
   width: 100%;
-  padding: 1rem 2rem;
-  background-color: #777;
+  padding: 1rem;
+  background-color: #888;
   color: #fff;
   text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
+  margin-top: auto;
 }
 
 

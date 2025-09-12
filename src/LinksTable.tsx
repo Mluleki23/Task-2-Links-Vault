@@ -20,7 +20,6 @@ export default function LinksTable() {
   });
   const [editId, setEditId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [message, setMessage] = useState(""); // popup message
 
   // Load links from localStorage on mount
   useEffect(() => {
@@ -46,17 +45,14 @@ export default function LinksTable() {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
       );
-      setMessage("Link updated successfully!");
+      alert("Link updated successfully!"); // ✅ alert for update
       setEditId(null);
     } else {
       setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
-      setMessage("Link added to localStorage!");
+      alert("Link added to localStorage!"); // ✅ alert for add
     }
 
     setForm({ tag: "", title: "", url: "", description: "" });
-
-    // Clear message after 3 seconds
-    setTimeout(() => setMessage(""), 3000);
   };
 
   const editLink = (id: number) => {
@@ -73,8 +69,7 @@ export default function LinksTable() {
 
   const deleteLink = (id: number) => {
     setLinks((prev) => prev.filter((l) => l.id !== id));
-    setMessage("Link deleted!");
-    setTimeout(() => setMessage(""), 3000);
+    alert("Link deleted!"); // ✅ alert for delete
   };
 
   const filteredLinks = links.filter((l) => {
@@ -89,12 +84,9 @@ export default function LinksTable() {
   return (
     <div className="links-table-container">
       {/* Header styled like footer */}
-      {/* <div className="link-vault">
+      <div className="link-vault">
         <h1>Link Vault</h1>
-      </div> */}
-
-      {/* Popup message */}
-      {message && <div className="popup-message">{message}</div>}
+      </div>
 
       <SearchBar onSearch={setSearchTerm} />
 
