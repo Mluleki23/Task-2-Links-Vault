@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "./components/Input";
 import SearchBar from "./components/SearchBar";
-
 
 interface LinkItem {
   id: number;
@@ -22,12 +21,25 @@ export default function LinksTable() {
   const [editId, setEditId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // ✅ Load links from localStorage on component mount
+  useEffect(() => {
+    const stored = localStorage.getItem("linksVault");
+    if (stored) {
+      setLinks(JSON.parse(stored));
+    }
+  }, []);
+
+  // ✅ Save links to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("linksVault", JSON.stringify(links));
+  }, [links]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const saveLink = () => {
-    if (!form.tag || !form.title || !form.url) return; // basic guard
+    if (!form.tag || !form.title || !form.url) return; // basic validation
     if (editId !== null) {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
@@ -55,7 +67,6 @@ export default function LinksTable() {
     setLinks((prev) => prev.filter((l) => l.id !== id));
   };
 
-  // filter by tag OR title OR description
   const filteredLinks = links.filter((l) => {
     const q = searchTerm.toLowerCase();
     return (
@@ -67,7 +78,10 @@ export default function LinksTable() {
 
   return (
     <div className="links-table-container">
-      <h2>Links Vault</h2>
+      {/* Header styled like footer */}
+      <div className="link-vault">
+        <h1>Link Vault</h1>
+      </div>
 
       <SearchBar onSearch={setSearchTerm} />
 
