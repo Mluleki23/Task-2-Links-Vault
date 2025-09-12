@@ -20,8 +20,9 @@ export default function LinksTable() {
   });
   const [editId, setEditId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [message, setMessage] = useState(""); // popup message
 
-  // ✅ Load links from localStorage on component mount
+  // Load links from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem("linksVault");
     if (stored) {
@@ -29,7 +30,7 @@ export default function LinksTable() {
     }
   }, []);
 
-  // ✅ Save links to localStorage whenever they change
+  // Save links to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("linksVault", JSON.stringify(links));
   }, [links]);
@@ -39,16 +40,23 @@ export default function LinksTable() {
   };
 
   const saveLink = () => {
-    if (!form.tag || !form.title || !form.url) return; // basic validation
+    if (!form.tag || !form.title || !form.url) return;
+
     if (editId !== null) {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
       );
+      setMessage("Link updated successfully!");
       setEditId(null);
     } else {
       setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
+      setMessage("Link added to localStorage!");
     }
+
     setForm({ tag: "", title: "", url: "", description: "" });
+
+    // Clear message after 3 seconds
+    setTimeout(() => setMessage(""), 3000);
   };
 
   const editLink = (id: number) => {
@@ -65,6 +73,8 @@ export default function LinksTable() {
 
   const deleteLink = (id: number) => {
     setLinks((prev) => prev.filter((l) => l.id !== id));
+    setMessage("Link deleted!");
+    setTimeout(() => setMessage(""), 3000);
   };
 
   const filteredLinks = links.filter((l) => {
@@ -79,9 +89,12 @@ export default function LinksTable() {
   return (
     <div className="links-table-container">
       {/* Header styled like footer */}
-      <div className="link-vault">
+      {/* <div className="link-vault">
         <h1>Link Vault</h1>
-      </div>
+      </div> */}
+
+      {/* Popup message */}
+      {message && <div className="popup-message">{message}</div>}
 
       <SearchBar onSearch={setSearchTerm} />
 
