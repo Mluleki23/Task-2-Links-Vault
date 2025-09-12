@@ -39,7 +39,6 @@ export default function LinksTable() {
   };
 
   const saveLink = () => {
-    // Check required fields
     if (!form.tag || !form.title || !form.url) {
       alert("Incorrect submission: Tag, Title, and URL are required.");
       return;
@@ -47,7 +46,7 @@ export default function LinksTable() {
 
     // Validate URL format
     try {
-      new URL(form.url); // will throw if invalid
+      new URL(form.url);
     } catch {
       alert(
         "Incorrect URL format. Please enter a valid URL (e.g., https://example.com)."
@@ -59,11 +58,11 @@ export default function LinksTable() {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
       );
-      alert("Link updated successfully!"); // ✅ alert for update
+      alert("Link updated successfully!");
       setEditId(null);
     } else {
       setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
-      alert("Link added to localStorage!"); // ✅ alert for add
+      alert("Link added to localStorage!");
     }
 
     setForm({ tag: "", title: "", url: "", description: "" });
@@ -83,7 +82,7 @@ export default function LinksTable() {
 
   const deleteLink = (id: number) => {
     setLinks((prev) => prev.filter((l) => l.id !== id));
-    alert("Link deleted!"); // ✅ alert for delete
+    alert("Link deleted!");
   };
 
   const filteredLinks = links.filter((l) => {
@@ -97,26 +96,28 @@ export default function LinksTable() {
 
   return (
     <div className="links-table-container">
-      <div className="link-header">
-        <h1>Add Link</h1>
-      </div>
-
+      {/* Search Bar */}
       <SearchBar onSearch={setSearchTerm} />
 
-      <div className="form-section">
-        <Input text="Tag" value={form.tag} onChange={handleChange} />
-        <Input text="Title" value={form.title} onChange={handleChange} />
-        <Input text="Url" value={form.url} onChange={handleChange} />
-        <Input
-          text="Description"
-          value={form.description}
-          onChange={handleChange}
-        />
-        <button className="btn btn-green" onClick={saveLink}>
-          {editId !== null ? "Update" : "Save"}
-        </button>
+      {/* Add Link Section */}
+      <div className="add-link-section">
+        <h2 style={{ marginBottom: "0.5rem" }}>Add a new link here:</h2>
+        <div className="form-section">
+          <Input text="Tag" value={form.tag} onChange={handleChange} />
+          <Input text="Title" value={form.title} onChange={handleChange} />
+          <Input text="Url" value={form.url} onChange={handleChange} />
+          <Input
+            text="Description"
+            value={form.description}
+            onChange={handleChange}
+          />
+          <button className="btn btn-green" onClick={saveLink}>
+            {editId !== null ? "Update" : "Save"}
+          </button>
+        </div>
       </div>
 
+      {/* Links Table */}
       {filteredLinks.length > 0 && (
         <table className="links-table">
           <thead>
