@@ -1,3 +1,4 @@
+<img src="https://socialify.git.ci/Mluleki23/Task-2-Links-Vault/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Task-2-Links-Vault" width="640" height="320" />
 # Task 2 – Links Vault
 
 A React + TypeScript web application for storing and managing useful web links.  
