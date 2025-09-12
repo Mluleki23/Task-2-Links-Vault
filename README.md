@@ -1,69 +1,84 @@
-# React + TypeScript + Vite
+# Task 2 – Links Vault
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript web application for storing and managing useful web links.  
+Built with **Vite** for a fast development experience and leveraging **React 19**, **TypeScript 5**, and **react-icons**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Features
+-  **React 19 + Vite** for lightning-fast development and builds  
+-  **Reusable Components** such as `Header`, `SearchBar`, `LinksTable`, and `Footer`  
+-  **Links Table** prepared for full CRUD (create, read, update, delete) functionality  
+-  Simple, clean styling with plain CSS and React Icons for UI accents  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+##  Getting Started
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/<your-username>/task-2--links-vault.git
+cd task-2--links-vault
+```
+> Replace `<your-username>` with your actual GitHub username or the repo owner’s name.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2️⃣ Install Dependencies
+Make sure **Node.js 18+** and **npm** are installed, then run:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3️⃣ Run the Development Server
+```bash
+npm run dev
 ```
+This starts Vite’s dev server, usually at [http://localhost:5173](http://localhost:5173).
+
+### 4️⃣ Build for Production
+```bash
+npm run build
+```
+Creates an optimized production build in the `dist/` folder.
+
+### 5️⃣ Preview the Production Build
+```bash
+npm run preview
+```
+Serves the production build locally for testing.
+
+---
+
+## 🗂 Project Structure
+```
+task-2--links-vault/
+├─ src/
+│  ├─ components/
+│  │  ├─ Header.tsx
+│  │  ├─ SearchBar.tsx
+│  │  ├─ LinksTable.tsx
+│  │  ├─ Footer.tsx
+│  │  └─ (other UI components)
+│  ├─ App.tsx
+│  └─ main.tsx
+├─ public/
+├─ package.json
+└─ README.md
+```
+
+---
+
+## Tech Stack
+- **React 19**  
+- **TypeScript ~5.8**  
+- **Vite 7**  
+- **react-icons** for iconography  
+- **ESLint + TypeScript-ESLint** for code linting
+
+---
+
+##  License
+This project is released under the **MIT License**.  
+You may use, modify, and distribute it freely with proper attribution.
+
+---
+
