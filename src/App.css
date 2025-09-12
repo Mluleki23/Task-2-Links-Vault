@@ -198,9 +198,87 @@ button:hover,
   text-decoration: underline;
 }
 
+/* --------------------------
+   Table Buttons Spacing
+--------------------------- */
+/* --------------------------
+   Table Buttons Spacing
+--------------------------- */
 .links-table .btn {
-  margin-right: 0.4rem;
-  padding: 0.35rem 0.9rem;
-  font-size: 0.85rem;
+  margin-right: 0.8rem; /* slightly more space between buttons */
+  padding: 0.5rem 1.2rem; /* bigger padding for better click area */
+  font-size: 0.95rem; /* larger text */
+  border-radius: 6px; /* keep rounded corners */
 }
-.footer { width: 100%; padding: 1rem; background-color: #888; color: #fff; text-align: center; margin-top: auto; }
+
+.footer { 
+  width: 100%;
+   padding: 1rem; 
+   background-color: #888; 
+   color: #fff;
+    text-align: center; 
+    margin-top: auto; }
+/* --------------------------
+   Responsive
+--------------------------- */
+@media (max-width: 768px) {
+  /* Container adjustments */
+  .links-table-container {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  /* Form section adjustments */
+  .form-section {
+    max-width: 100%;
+    padding: 0.8rem;
+  }
+
+  /* Inputs full width */
+  .form-section input[type="text"] {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  /* Buttons smaller but touch-friendly */
+  .links-table .btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
+  }
+
+  /* Search bar full width */
+  .searchbutton {
+    width: 95%;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .searchbutton input {
+    font-size: 0.95rem;
+    height: 36px;
+  }
+
+  /* Table font size and spacing */
+  .links-table th,
+  .links-table td {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Stack form fields on very small screens */
+  .form-section {
+    gap: 0.8rem;
+  }
+
+  /* Table responsiveness: make table scrollable */
+  .links-table-container {
+    overflow-x: auto;
+  }
+
+  .links-table {
+    min-width: 600px; /* allow horizontal scroll if needed */
+  }
+}

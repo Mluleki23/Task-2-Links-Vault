@@ -84,8 +84,8 @@ export default function LinksTable() {
   return (
     <div className="links-table-container">
       {/* Header styled like footer */}
-      <div className="link-vault">
-        <h1>Link Vault</h1>
+      <div className="link-header">
+        <h1>Add Link</h1>
       </div>
 
       <SearchBar onSearch={setSearchTerm} />

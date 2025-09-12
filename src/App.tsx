@@ -3,7 +3,7 @@ import { useState } from "react";
 import Window from "./components/Window";
 import Header from "./components/Header";
 import MainRec from "./components/MainRec";
-import Addlink from "./components/Addlink";
+
 import Input from "./components/Input";
 import "./App.css";
 import SearchBar from "./components/SearchBar";
@@ -23,7 +23,7 @@ function App() {
       <div className="MySection">
        
 
-        <Addlink />
+       
         {/* <div className="input">
           <Input text="Tag" /> <br />
           <Input text="Title" /> <br />
