@@ -17,10 +17,10 @@ Built with **Vite** for a fast development experience and leveraging **React 19*
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/task-2--links-vault.git
+git clone https://github.com/Mluleki23/task-2--links-vault.git
 cd task-2--links-vault
 ```
-> Replace `<your-username>` with your actual GitHub username or the repo owner’s name.
+> 
 
 ### 2️⃣ Install Dependencies
 Make sure **Node.js 18+** and **npm** are installed, then run:
