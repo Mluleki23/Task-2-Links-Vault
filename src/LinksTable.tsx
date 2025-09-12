@@ -39,7 +39,21 @@ export default function LinksTable() {
   };
 
   const saveLink = () => {
-    if (!form.tag || !form.title || !form.url) return;
+    // Check required fields
+    if (!form.tag || !form.title || !form.url) {
+      alert("Incorrect submission: Tag, Title, and URL are required.");
+      return;
+    }
+
+    // Validate URL format
+    try {
+      new URL(form.url); // will throw if invalid
+    } catch {
+      alert(
+        "Incorrect URL format. Please enter a valid URL (e.g., https://example.com)."
+      );
+      return;
+    }
 
     if (editId !== null) {
       setLinks((prev) =>
@@ -83,7 +97,6 @@ export default function LinksTable() {
 
   return (
     <div className="links-table-container">
-      {/* Header styled like footer */}
       <div className="link-header">
         <h1>Add Link</h1>
       </div>

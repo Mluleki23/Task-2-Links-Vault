@@ -1,6 +1,4 @@
-/* --------------------------
-   Global Reset & Base
---------------------------- */
+
 * {
   margin: 0;
   padding: 0;
@@ -76,11 +74,11 @@ body,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Input Field Spacing */
+
 .input-field {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem; /* space between label and input */
+  gap: 0.4rem; 
 }
 
 .input-field label {
@@ -102,9 +100,7 @@ body,
   outline: none;
 }
 
-/* --------------------------
-   Buttons
---------------------------- */
+
 button,
 .btn {
   padding: 0.55rem 1.2rem;
@@ -138,9 +134,7 @@ button:hover,
   background-color: #c82333;
 }
 
-/* --------------------------
-   Links Table Container
---------------------------- */
+
 .links-table-container {
   width: min(95%, 900px);
   margin: 2rem auto;
@@ -157,9 +151,7 @@ button:hover,
   color: #2c3e50;
 }
 
-/* --------------------------
-   Table Styling
---------------------------- */
+
 .links-table {
   width: 100%;
   border-collapse: collapse;
@@ -198,17 +190,13 @@ button:hover,
   text-decoration: underline;
 }
 
-/* --------------------------
-   Table Buttons Spacing
---------------------------- */
-/* --------------------------
-   Table Buttons Spacing
---------------------------- */
+
+
 .links-table .btn {
-  margin-right: 0.8rem; /* slightly more space between buttons */
-  padding: 0.5rem 1.2rem; /* bigger padding for better click area */
-  font-size: 0.95rem; /* larger text */
-  border-radius: 6px; /* keep rounded corners */
+  margin-right: 0.8rem; 
+  padding: 0.5rem 1.2rem; 
+  font-size: 0.95rem; 
+  border-radius: 6px; 
 }
 
 .footer { 
@@ -218,37 +206,34 @@ button:hover,
    color: #fff;
     text-align: center; 
     margin-top: auto; }
-/* --------------------------
-   Responsive
---------------------------- */
+
 @media (max-width: 768px) {
-  /* Container adjustments */
+
   .links-table-container {
     width: 95%;
     padding: 1rem;
   }
 
-  /* Form section adjustments */
+  
   .form-section {
     max-width: 100%;
     padding: 0.8rem;
   }
 
-  /* Inputs full width */
   .form-section input[type="text"] {
     width: 100%;
     font-size: 0.95rem;
     padding: 0.5rem 0.7rem;
   }
 
-  /* Buttons smaller but touch-friendly */
+  
   .links-table .btn {
     padding: 0.45rem 1rem;
     font-size: 0.9rem;
     margin-right: 0.6rem;
   }
 
-  /* Search bar full width */
+
   .searchbutton {
     width: 95%;
     padding: 0.5rem 0.75rem;
@@ -259,7 +244,7 @@ button:hover,
     height: 36px;
   }
 
-  /* Table font size and spacing */
+
   .links-table th,
   .links-table td {
     font-size: 0.9rem;
@@ -268,17 +253,17 @@ button:hover,
 }
 
 @media (max-width: 480px) {
-  /* Stack form fields on very small screens */
+ 
   .form-section {
     gap: 0.8rem;
   }
 
-  /* Table responsiveness: make table scrollable */
+  
   .links-table-container {
     overflow-x: auto;
   }
 
   .links-table {
-    min-width: 600px; /* allow horizontal scroll if needed */
+    min-width: 600px; 
   }
 }
