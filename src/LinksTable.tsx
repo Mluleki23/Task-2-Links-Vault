@@ -21,7 +21,6 @@ export default function LinksTable() {
   const [editId, setEditId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Load links from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem("linksVault");
     if (stored) {
@@ -29,7 +28,6 @@ export default function LinksTable() {
     }
   }, []);
 
-  // Save links to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("linksVault", JSON.stringify(links));
   }, [links]);
@@ -44,7 +42,6 @@ export default function LinksTable() {
       return;
     }
 
-    // Validate URL format
     try {
       new URL(form.url);
     } catch {
@@ -141,18 +138,20 @@ export default function LinksTable() {
                 </td>
                 <td>{link.description}</td>
                 <td>
-                  <button
-                    className="btn btn-green"
-                    onClick={() => editLink(link.id)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="btn btn-red"
-                    onClick={() => deleteLink(link.id)}
-                  >
-                    Delete
-                  </button>
+                  <div className="action-buttons">
+                    <button
+                      className="btn btn-green"
+                      onClick={() => editLink(link.id)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="btn btn-red"
+                      onClick={() => deleteLink(link.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
