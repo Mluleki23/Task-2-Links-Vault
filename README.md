@@ -1,6 +1,9 @@
 <img src="https://socialify.git.ci/Mluleki23/Task-2-Links-Vault/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Task-2-Links-Vault" width="640" height="320" />
 # Task 2 – Links Vault
 
+#Figma Design
+https://www.figma.com/design/lbiqvFpLInyu7qaeu77Aaf/Untitled?node-id=0-1&p=f&t=GUZaUbNAmZoZrtHC-0
+
 A React + TypeScript web application for storing and managing useful web links.  
 Built with **Vite** for a fast development experience and leveraging **React 19**, **TypeScript 5**, and **react-icons**.
 
