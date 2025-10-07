@@ -196,8 +196,13 @@ button:hover,
 /* --------------------------
    Update/Delete Buttons
 --------------------------- */
+.action-buttons {
+  display: flex;
+  gap: 1rem; /* space between buttons */
+}
+
 .links-table .btn {
-  margin-right: 0.6rem; /* gap between buttons */
+  margin-right: 0; /* removed, using gap instead */
   margin-bottom: 0; /* reset for desktop */
   padding: 0.5rem 1.2rem;
   font-size: 0.95rem;
@@ -206,11 +211,15 @@ button:hover,
 
 /* Stack buttons vertically on small screens */
 @media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem; /* space between stacked buttons */
+  }
+  
   .links-table .btn {
-    display: block;
     width: 100%;
     margin-right: 0;
-    margin-bottom: 0.5rem; /* space between stacked buttons */
+    margin-bottom: 0;
   }
 }
 
@@ -243,7 +252,6 @@ button:hover,
   .links-table .btn {
     padding: 0.45rem 1rem;
     font-size: 0.9rem;
-    margin-right: 0.6rem;
   }
 
   .searchbutton {

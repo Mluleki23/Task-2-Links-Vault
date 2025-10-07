@@ -20,12 +20,11 @@ export default function LinksTable() {
   });
   const [editId, setEditId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [addedHeading, setAddedHeading] = useState(""); // ✅ heading-style message
 
   useEffect(() => {
     const stored = localStorage.getItem("linksVault");
-    if (stored) {
-      setLinks(JSON.parse(stored));
-    }
+    if (stored) setLinks(JSON.parse(stored));
   }, []);
 
   useEffect(() => {
@@ -55,14 +54,17 @@ export default function LinksTable() {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
       );
-      alert("Link updated successfully!");
+      setAddedHeading("Updated Link:");
       setEditId(null);
     } else {
       setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
-      alert("Link added to localStorage!");
+      setAddedHeading("Added Link:");
     }
 
     setForm({ tag: "", title: "", url: "", description: "" });
+
+    // Remove heading after 3 seconds
+    setTimeout(() => setAddedHeading(""), 3000);
   };
 
   const editLink = (id: number) => {
@@ -78,8 +80,13 @@ export default function LinksTable() {
   };
 
   const deleteLink = (id: number) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this link?"
+    );
+    if (!confirmDelete) return;
     setLinks((prev) => prev.filter((l) => l.id !== id));
-    alert("Link deleted!");
+    setAddedHeading("Deleted Link:");
+    setTimeout(() => setAddedHeading(""), 3000);
   };
 
   const filteredLinks = links.filter((l) => {
@@ -113,6 +120,13 @@ export default function LinksTable() {
           </button>
         </div>
       </div>
+
+      {/* ✅ Heading displayed like “Add a new link here” */}
+      {addedHeading && (
+        <h2 style={{ textAlign: "center", margin: "1rem 0", color: "#28a745" }}>
+          {addedHeading}
+        </h2>
+      )}
 
       {/* Links Table */}
       {filteredLinks.length > 0 && (
