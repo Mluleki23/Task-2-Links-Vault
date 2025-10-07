@@ -55,10 +55,12 @@ export default function LinksTable() {
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
       );
       setAddedHeading("Updated Link:");
+      alert(`Link updated successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`);
       setEditId(null);
     } else {
       setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
       setAddedHeading("Added Link:");
+      alert(`Link added successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`);
     }
 
     setForm({ tag: "", title: "", url: "", description: "" });
