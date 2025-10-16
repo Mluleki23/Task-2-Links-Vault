@@ -1,13 +1,5 @@
-import { useState } from "react";
-
-import Window from "./components/Window";
 import Header from "./components/Header";
-import MainRec from "./components/MainRec";
-
-import Input from "./components/Input";
 import "./App.css";
-import SearchBar from "./components/SearchBar";
-import Button from "./components/Button";
 import LinksTable from "./LinksTable";
 import Footer from "./components/Footer";
 
