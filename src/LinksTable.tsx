@@ -20,16 +20,13 @@ export default function LinksTable() {
   });
   const [editId, setEditId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [addedHeading, setAddedHeading] = useState(""); // ✅ heading-style message
 
-  // Load links from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem("linksVault");
-    if (stored) {
-      setLinks(JSON.parse(stored));
-    }
+    if (stored) setLinks(JSON.parse(stored));
   }, []);
 
-  // Save links to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("linksVault", JSON.stringify(links));
   }, [links]);
@@ -44,7 +41,6 @@ export default function LinksTable() {
       return;
     }
 
-    // Validate URL format
     try {
       new URL(form.url);
     } catch {
@@ -58,14 +54,19 @@ export default function LinksTable() {
       setLinks((prev) =>
         prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
       );
-      alert("Link updated successfully!");
+      setAddedHeading("Updated Link:");
+      alert(`Link updated successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`);
       setEditId(null);
     } else {
       setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
-      alert("Link added to localStorage!");
+      setAddedHeading("Added Link:");
+      alert(`Link added successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`);
     }
 
     setForm({ tag: "", title: "", url: "", description: "" });
+
+    // Remove heading after 3 seconds
+    setTimeout(() => setAddedHeading(""), 3000);
   };
 
   const editLink = (id: number) => {
@@ -81,8 +82,13 @@ export default function LinksTable() {
   };
 
   const deleteLink = (id: number) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this link?"
+    );
+    if (!confirmDelete) return;
     setLinks((prev) => prev.filter((l) => l.id !== id));
-    alert("Link deleted!");
+    setAddedHeading("Deleted Link:");
+    setTimeout(() => setAddedHeading(""), 3000);
   };
 
   const filteredLinks = links.filter((l) => {
@@ -117,6 +123,13 @@ export default function LinksTable() {
         </div>
       </div>
 
+      {/* ✅ Heading displayed like “Add a new link here” */}
+      {addedHeading && (
+        <h2 style={{ textAlign: "center", margin: "1rem 0", color: "#28a745" }}>
+          {addedHeading}
+        </h2>
+      )}
+
       {/* Links Table */}
       {filteredLinks.length > 0 && (
         <table className="links-table">
@@ -141,18 +154,20 @@ export default function LinksTable() {
                 </td>
                 <td>{link.description}</td>
                 <td>
-                  <button
-                    className="btn btn-green"
-                    onClick={() => editLink(link.id)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="btn btn-red"
-                    onClick={() => deleteLink(link.id)}
-                  >
-                    Delete
-                  </button>
+                  <div className="action-buttons">
+                    <button
+                      className="btn btn-green"
+                      onClick={() => editLink(link.id)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="btn btn-red"
+                      onClick={() => deleteLink(link.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

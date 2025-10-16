@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +21,15 @@ body,
   align-items: center;
 }
 
-.header{ width: 100%; padding: 1rem; background-color: #888; color: #fff; text-align: center; margin-top: auto; }
+.header {
+  width: 100%;
+  padding: 1rem;
+  background-color: #888;
+  color: #fff;
+  text-align: center;
+  margin-top: auto;
+}
+
 .searchbutton {
   display: flex;
   align-items: center;
@@ -74,11 +81,10 @@ body,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-
 .input-field {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem; 
+  gap: 0.4rem;
 }
 
 .input-field label {
@@ -99,7 +105,6 @@ body,
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
   outline: none;
 }
-
 
 button,
 .btn {
@@ -134,7 +139,6 @@ button:hover,
   background-color: #c82333;
 }
 
-
 .links-table-container {
   width: min(95%, 900px);
   margin: 2rem auto;
@@ -150,7 +154,6 @@ button:hover,
   font-size: 2rem;
   color: #2c3e50;
 }
-
 
 .links-table {
   width: 100%;
@@ -190,31 +193,51 @@ button:hover,
   text-decoration: underline;
 }
 
-
-
-.links-table .btn {
-  margin-right: 0.8rem; 
-  padding: 0.5rem 1.2rem; 
-  font-size: 0.95rem; 
-  border-radius: 6px; 
+/* --------------------------
+   Update/Delete Buttons
+--------------------------- */
+.action-buttons {
+  display: flex;
+  gap: 1rem; /* space between buttons */
 }
 
-.footer { 
+.links-table .btn {
+  margin-right: 0; /* removed, using gap instead */
+  margin-bottom: 0; /* reset for desktop */
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+/* Stack buttons vertically on small screens */
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem; /* space between stacked buttons */
+  }
+  
+  .links-table .btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
+.footer {
   width: 100%;
-   padding: 1rem; 
-   background-color: #888; 
-   color: #fff;
-    text-align: center; 
-    margin-top: auto; }
+  padding: 1rem;
+  background-color: #888;
+  color: #fff;
+  text-align: center;
+  margin-top: auto;
+}
 
 @media (max-width: 768px) {
-
   .links-table-container {
     width: 95%;
     padding: 1rem;
   }
 
-  
   .form-section {
     max-width: 100%;
     padding: 0.8rem;
@@ -226,13 +249,10 @@ button:hover,
     padding: 0.5rem 0.7rem;
   }
 
-  
   .links-table .btn {
     padding: 0.45rem 1rem;
     font-size: 0.9rem;
-    margin-right: 0.6rem;
   }
-
 
   .searchbutton {
     width: 95%;
@@ -244,7 +264,6 @@ button:hover,
     height: 36px;
   }
 
-
   .links-table th,
   .links-table td {
     font-size: 0.9rem;
@@ -253,17 +272,15 @@ button:hover,
 }
 
 @media (max-width: 480px) {
- 
   .form-section {
     gap: 0.8rem;
   }
 
-  
   .links-table-container {
     overflow-x: auto;
   }
 
   .links-table {
-    min-width: 600px; 
+    min-width: 600px;
   }
 }
