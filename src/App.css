@@ -187,7 +187,22 @@ button:hover,
   color: #007bff;
   text-decoration: none;
   transition: color 0.2s;
+  /* Wrapping rules to prevent long URLs from overflowing their cells */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
+
+/* Ensure links occupy full cell width and wrap nicely */
+.links-table td a {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
 .links-table a:hover {
   color: #0056b3;
   text-decoration: underline;
@@ -215,7 +230,7 @@ button:hover,
     flex-direction: column;
     gap: 0.5rem; /* space between stacked buttons */
   }
-  
+
   .links-table .btn {
     width: 100%;
     margin-right: 0;
