@@ -11,6 +11,7 @@ export default function Input({ text, value, onChange }: Props) {
     <div className="input-field">
       <label>{text}</label>
       <input
+        type="text"
         name={text.toLowerCase()} // ✅ IMPORTANT
         value={value}
         onChange={onChange}
