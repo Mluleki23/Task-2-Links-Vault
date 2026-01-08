@@ -22,12 +22,21 @@ export default function LinksTable() {
   const [searchTerm, setSearchTerm] = useState("");
   const [addedHeading, setAddedHeading] = useState(""); // ✅ heading-style message
 
+  // Use a ref to avoid running the persistence effect on first mount
+  const isInitialMount = React.useRef(true);
+
   useEffect(() => {
     const stored = localStorage.getItem("linksVault");
     if (stored) setLinks(JSON.parse(stored));
   }, []);
 
   useEffect(() => {
+    // Skip the first run which happens on mount to avoid overwriting stored links
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     localStorage.setItem("linksVault", JSON.stringify(links));
   }, [links]);
 
@@ -51,16 +60,27 @@ export default function LinksTable() {
     }
 
     if (editId !== null) {
-      setLinks((prev) =>
-        prev.map((l) => (l.id === editId ? { ...l, ...form } : l))
+      const updated = links.map((l) =>
+        l.id === editId ? { ...l, ...form } : l
       );
+      setLinks(updated);
+      // Persist immediately so refresh keeps the change
+      localStorage.setItem("linksVault", JSON.stringify(updated));
       setAddedHeading("Updated Link:");
-      alert(`Link updated successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`);
+      alert(
+        `Link updated successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`
+      );
       setEditId(null);
     } else {
-      setLinks((prev) => [...prev, { id: Date.now(), ...form }]);
+      const newLink = { id: Date.now(), ...form };
+      const updated = [...links, newLink];
+      setLinks(updated);
+      // Persist immediately so refresh keeps the new link
+      localStorage.setItem("linksVault", JSON.stringify(updated));
       setAddedHeading("Added Link:");
-      alert(`Link added successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`);
+      alert(
+        `Link added successfully!\n\nTitle: ${form.title}\nURL: ${form.url}`
+      );
     }
 
     setForm({ tag: "", title: "", url: "", description: "" });
@@ -86,7 +106,10 @@ export default function LinksTable() {
       "Are you sure you want to delete this link?"
     );
     if (!confirmDelete) return;
-    setLinks((prev) => prev.filter((l) => l.id !== id));
+    const updated = links.filter((l) => l.id !== id);
+    setLinks(updated);
+    // Persist deletion immediately
+    localStorage.setItem("linksVault", JSON.stringify(updated));
     setAddedHeading("Deleted Link:");
     setTimeout(() => setAddedHeading(""), 3000);
   };

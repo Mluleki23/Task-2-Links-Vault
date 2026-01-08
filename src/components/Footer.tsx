@@ -1,5 +1,5 @@
 export default function Footer() {
   return (
-  <footer className="footer">@2025</footer>
+  <footer className="footer">@Mluleki Moloi</footer>
   )
 }
